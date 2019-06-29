@@ -7,7 +7,7 @@ import {
   BrandColor
 } from '../obj.constants';
 
-export const HeaderStyled = styled.div`
+export const HeaderStyled = styled.header`
   border-bottom: 1px solid ${Color.GrayLight};
   background: ${BrandColor.Snow};
   padding: ${Spacing.Medium};
