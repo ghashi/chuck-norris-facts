@@ -1,11 +1,5 @@
 import styled from 'styled-components';
-import {
-  FontSize,
-  Color,
-  FontFamily,
-  FontWeight,
-  Spacing
-} from '../obj.constants';
+import { Color, FontSize, FontWeight } from '../obj.constants';
 
 export const H1FontSize = FontSize.XXLarge;
 export const H1 = styled.h1`

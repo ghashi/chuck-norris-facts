@@ -1,14 +1,19 @@
 import styled from 'styled-components';
-import { FontSize, Spacing, Color, FontWeight } from '../obj.constants';
+import {
+  FontSize,
+  Spacing,
+  Color,
+  FontWeight,
+  BrandColor
+} from '../obj.constants';
 
 export const HeaderStyled = styled.div`
   border-bottom: 1px solid ${Color.GrayLight};
-  background: ${Color.White};
+  background: ${BrandColor.Snow};
   padding: ${Spacing.Medium};
-  position: fixed;
 `;
 
-export const HeaderTitleStyled = styled.div`
+export const HeaderTitleStyled = styled.a`
   font-size: ${FontSize.Medium};
   font-weight: ${FontWeight.Bold};
   text-transform: uppercase;
