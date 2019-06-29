@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
+import { GlobalStyled } from './atomic/obj.globals';
 import logo from './logo.svg';
 
 const App: React.FC = () => {
   return (
     <div className="App">
+      <GlobalStyled />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
