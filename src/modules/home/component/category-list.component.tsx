@@ -22,6 +22,17 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = props => {
     ? Array(10).fill(loadingCategory)
     : props.categories;
 
+  const [randomCategory, setRandomCategory] = React.useState<
+    CategoryListItem
+  >();
+  React.useEffect(() => {
+    if (!categories) {
+      return;
+    }
+    const random = categories[Math.floor(Math.random() * categories.length)];
+    setRandomCategory(random);
+  }, [categories]);
+
   if (!categories) {
     return null;
   }
@@ -37,6 +48,13 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = props => {
           </Link>
         </CategoryListItemStyled>
       ))}
+      {randomCategory && randomCategory.to && (
+        <CategoryListItemStyled>
+          <Link to={randomCategory.to}>
+            <CategoryListItemContentStyled>???</CategoryListItemContentStyled>
+          </Link>
+        </CategoryListItemStyled>
+      )}
     </CategoryListStyled>
   );
 };
