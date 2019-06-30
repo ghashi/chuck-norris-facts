@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Color, FontSize, FontWeight } from '../obj.constants';
+import { Color, FontSize, FontWeight, Spacing } from '../obj.constants';
 
 export const H1FontSize = FontSize.XXLarge;
 export const H1 = styled.h1`
@@ -8,6 +8,7 @@ export const H1 = styled.h1`
   font-weight: ${FontWeight.Normal};
   font-weight: ${FontWeight.Bold};
   margin: 0;
+  margin-top: ${Spacing.Large};
 `;
 
 export const H1Light = styled(H1)`

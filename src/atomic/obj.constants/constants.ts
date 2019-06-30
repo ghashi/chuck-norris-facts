@@ -25,6 +25,8 @@ export class Color {
   public static readonly Success = '#26C281';
 }
 
+export const animationTime = '.3s';
+
 export enum FontFamily {
   Primary = 'Muli, sans-serif'
 }
