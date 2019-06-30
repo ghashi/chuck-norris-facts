@@ -7,7 +7,7 @@ import Button from '../atm.button/button.component';
 interface ErrorPlaceholderProps {
   title?: string;
   buttonTitle?: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const ErrorPlaceholder: React.FunctionComponent<
@@ -17,7 +17,9 @@ const ErrorPlaceholder: React.FunctionComponent<
     <ErrorPlaceholderStyled>
       <ErrorOutline size={60} />
       <H3>{props.title}</H3>
-      <Button onClick={props.onClick}>{props.buttonTitle}</Button>
+      {props.onClick && (
+        <Button onClick={props.onClick}>{props.buttonTitle}</Button>
+      )}
     </ErrorPlaceholderStyled>
   );
 };

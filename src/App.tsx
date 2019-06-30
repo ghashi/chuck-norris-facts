@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { GlobalStyled } from './atomic/obj.globals';
 import Layout from './atomic/org.layout/layout.component';
+import Page404Page from './modules/404/404.page';
 import CategoryLazy, {
   categoryDetailRoutePath
 } from './modules/category-detail/category-detail.lazy';
@@ -13,8 +14,11 @@ const App: React.FC = () => {
       <GlobalStyled />
       <Router>
         <Layout>
-          <Route path={homeRoutePath} exact component={HomeLazy} />
-          <Route path={categoryDetailRoutePath} component={CategoryLazy} />
+          <Switch>
+            <Route path={homeRoutePath} exact component={HomeLazy} />
+            <Route path={categoryDetailRoutePath} component={CategoryLazy} />
+            <Route component={Page404Page} />
+          </Switch>
         </Layout>
       </Router>
     </>

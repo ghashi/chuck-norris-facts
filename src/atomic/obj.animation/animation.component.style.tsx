@@ -37,3 +37,15 @@ export const Fade = styled.div`
   animation: ${(props: FadeProps) => (props.show ? fadeIn : fadeOut)}
     ${(props: FadeProps) => props.duration || animationTime} linear forwards;
 `;
+
+//////////////////////////////////////////////////
+
+export const rotateAnimation = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;

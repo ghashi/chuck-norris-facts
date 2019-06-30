@@ -1,6 +1,11 @@
 import styled from 'styled-components';
-import { H3 } from '../../../atomic/atm.typography';
-import { animationTime, Color, Spacing } from '../../../atomic/obj.constants';
+import {
+  animationTime,
+  Color,
+  FontSize,
+  FontWeight,
+  Spacing
+} from '../../../atomic/obj.constants';
 import { cardStyle } from '../../../atomic/obj.mixin';
 
 export const CategoryListStyled = styled.ul`
@@ -14,8 +19,12 @@ export const CategoryListStyled = styled.ul`
   padding: 0;
 `;
 
-export const CategoryListItemContentStyled = styled(H3)`
+export const CategoryListItemContentStyled = styled.span`
+  display: block;
   padding: ${Spacing.Medium};
+  color: ${Color.GrayXDark};
+  font-size: ${FontSize.Large};
+  font-weight: ${FontWeight.Bold};
 `;
 export const CategoryListItemStyled = styled.li`
   ${cardStyle}
