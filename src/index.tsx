@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+export const { REACT_APP_BASE_URL } = process.env;
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

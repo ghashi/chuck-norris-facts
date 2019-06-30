@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { BrandColor, Color, Spacing } from '../obj.constants';
 
-export const FooterStyled = styled.div`
-  border-bottom: 1px solid ${Color.GrayLight};
+export const footerHeight = '35px';
+export const FooterStyled = styled.footer`
   background: ${BrandColor.KenyanCopper};
   padding: ${Spacing.Small};
 `;
