@@ -1,14 +1,15 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+import { LoaderAlt } from 'styled-icons/boxicons-regular/LoaderAlt';
+import { rotateAnimation } from '../obj.animation/animation.component.style';
 import {
+  BrandColor,
   Color,
   FontSize,
   FontWeight,
-  Spacing,
-  BrandColor
+  Spacing
 } from '../obj.constants';
 import { highlightStyle } from '../obj.mixin';
 import { ButtonProps } from './button.component';
-import { LoaderAlt } from 'styled-icons/boxicons-regular/LoaderAlt';
 
 export const buttonHeight = '48px';
 
@@ -84,17 +85,8 @@ export const ButtonSpinnerWrapperStyled = styled.span`
   top: calc(50% - ${loadingSize / 2}px);
 `;
 
-const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-`;
 export const ButtonSpinnerStyled = styled(LoaderAlt).attrs({
   size: loadingSize
 })`
-  animation: ${rotate} 2s linear infinite;
+  animation: ${rotateAnimation} 2s linear infinite;
 `;

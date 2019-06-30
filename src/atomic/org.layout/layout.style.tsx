@@ -3,6 +3,6 @@ import { headerHeight } from '../atm.header/header.style';
 import { footerHeight } from '../atm.footer/footer.style';
 
 export const LayoutStyled = styled.div``;
-export const LayoutContentStyled = styled.div`
+export const LayoutContentStyled = styled.main`
   min-height: calc(100vh - ${headerHeight} - ${footerHeight});
 `;
