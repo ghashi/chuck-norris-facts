@@ -15,7 +15,7 @@ import {
   LoadingAndErrorLoadingPart
 } from '../../atomic/obj.loading-and-error/loading-and-error.component';
 import { homeRoutePath } from '../home/home.lazy';
-import { useCategoryDetailAPI } from './category-detail.hook';
+import { useCategoryDetailAPI } from './category-detail-api.hook';
 
 interface CategoryDetailPageProps {
   name: string;

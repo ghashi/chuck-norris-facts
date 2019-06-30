@@ -29,13 +29,13 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = props => {
   return (
     <CategoryListStyled>
       {categories.map((category, index) => (
-        <Link to={category.to} key={index}>
-          <CategoryListItemStyled>
+        <CategoryListItemStyled>
+          <Link to={category.to} key={index}>
             <CategoryListItemContentStyled>
               {category.name || <Skeleton width={90} />}
             </CategoryListItemContentStyled>
-          </CategoryListItemStyled>
-        </Link>
+          </Link>
+        </CategoryListItemStyled>
       ))}
     </CategoryListStyled>
   );

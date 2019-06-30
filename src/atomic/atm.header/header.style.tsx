@@ -17,7 +17,7 @@ export const HeaderStyled = styled.header`
 export const HeaderTitleStyled = styled.span`
   font-size: ${FontSize.Medium};
   font-weight: ${FontWeight.Bold};
-  color: ${BrandColor.OrangeRed};
+  color: ${BrandColor.ChineseRed};
   text-transform: uppercase;
   letter-spacing: 2px;
 `;
