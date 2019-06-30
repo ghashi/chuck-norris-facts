@@ -1,8 +1,28 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Chuck Norris facts
+
+This projects consumes the [ChuckNorris.io](https://api.chucknorris.io/) API. You can:
+
+- see all fact categories
+- see a fact for a given category
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) using typescript.
+All UI components are built with styled-components and react hooks.
+
+## Project folder organization
+
+├── `src`
+│   ├── `atomic` => it has the project components. [Read this for more info](src/atomic/README.md)
+│   ├── `data` => it should have all datasources (http, database, session storage, local storage)
+│   │   └── `http` => it should have http related code: data transfer objects (DTO), request objects, response objects, urls, interceptors
+│   └── `modules` => project modules/pages (ex: home, category-detail) and their specific dependencies/components
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm run storybook`
+
+Runs the storybook which lists the project components.<br>
 
 ### `npm start`
 
