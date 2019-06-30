@@ -1,7 +1,7 @@
 export const getCategoryDetailApiPath = (category: string) =>
   `jokes/random?category=${category}`;
 
-export interface GetCategoriesResponse {
+export interface GetCategoryDetailResponse {
   categories: string[];
   created_at: string;
   icon_url: string;

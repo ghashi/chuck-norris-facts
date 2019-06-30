@@ -1,7 +1,8 @@
-import { addDecorator, configure } from '@storybook/react';
-import { GlobalStyled } from '../src/atomic/obj.globals';
 import { withKnobs } from '@storybook/addon-knobs';
-import React from 'react';
+import { addDecorator, configure } from '@storybook/react';
+import * as React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { GlobalStyled } from '../src/atomic/obj.globals';
 
 const req = require.context('../src/', true, /\.story\.tsx$/);
 
@@ -11,10 +12,10 @@ function loadStories() {
 
 addDecorator(story => {
   return (
-    <div>
+    <Router>
       <GlobalStyled />
       {story()}
-    </div>
+    </Router>
   );
 });
 addDecorator(withKnobs);

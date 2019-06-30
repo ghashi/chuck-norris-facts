@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useReducer, useState, useCallback } from 'react';
+import { useEffect, useReducer, useState, useCallback } from 'react';
 import { REACT_APP_BASE_URL } from '../..';
 
 interface UseDataState<D> {
