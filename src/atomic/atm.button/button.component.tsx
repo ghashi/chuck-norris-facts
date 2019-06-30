@@ -9,15 +9,16 @@ import {
 export interface ButtonProps {
   disabled?: boolean;
   loading?: boolean;
+  outline?: boolean;
   onClick?: () => any;
   type?: 'button' | 'submit' | 'reset';
 }
 
 const Button: React.FunctionComponent<ButtonProps> = props => {
-  const { loading, disabled, type, ...others } = props;
+  const { loading, disabled, outline, type, ...others } = props;
 
   return (
-    <ButtonStyled disabled={loading || disabled} {...others}>
+    <ButtonStyled outline={outline} disabled={loading || disabled} {...others}>
       <ButtonContentStyled loading={loading}>
         {props.children}
       </ButtonContentStyled>
@@ -33,5 +34,6 @@ export default Button;
 Button.defaultProps = {
   disabled: false,
   loading: false,
+  outline: false,
   type: 'button'
 };

@@ -33,8 +33,10 @@ export const ButtonStyled = styled.button`
 
   min-height: ${buttonHeight};
 
-  background-color: ${Color.Primary};
-  color: ${Color.White};
+  background-color: ${(props: ButtonProps) =>
+    props.outline ? Color.White : Color.Primary};
+  color: ${(props: ButtonProps) =>
+    props.outline ? Color.Primary : Color.White};
   border-color: ${Color.Primary};
   border-style: solid;
   border-radius: 4px;
@@ -43,11 +45,15 @@ export const ButtonStyled = styled.button`
     !props.disabled && !props.loading
       ? `
   &:hover {
-    background-color: ${BrandColor.ChineseRed};
+    background-color: ${
+      props.outline ? BrandColor.Snow : BrandColor.ChineseRed
+    };
   }
   &:active {
-    background-color: ${BrandColor.KenyanCopper};
-  }
+    background-color: ${
+      props.outline ? BrandColor.Snow : BrandColor.KenyanCopper
+    };
+    }
   `
       : ''}
 

@@ -15,6 +15,10 @@ import {
   getCategoryDetailApiPath,
   GetCategoryDetailResponse
 } from '../../data/http/dto/get-category-detail.request';
+import { Fade } from '../../atomic/obj.animation/animation.component.style';
+import Skeleton from 'react-loading-skeleton';
+import { Link } from 'react-router-dom';
+import { homeRoutePath } from '../home/home.lazy';
 
 interface CategoryDetailPageProps {
   name: string;
@@ -41,20 +45,38 @@ const CategoryDetailPage: React.FunctionComponent<
             loading={response.isLoading}
             error={response.isError}
           >
-            <LoadingAndErrorLoadingPart>loading</LoadingAndErrorLoadingPart>
-            <LoadingAndErrorContentPart>
+            <LoadingAndErrorLoadingPart>
               <Row>
                 <Col xs={12} sm={9} md={9}>
                   <HighlightedSentence>
-                    {response.data && response.data.value}
+                    <Skeleton count={3} />
                   </HighlightedSentence>
                 </Col>
               </Row>
+            </LoadingAndErrorLoadingPart>
+            <LoadingAndErrorContentPart>
               <Row>
-                <Col xs={12}>
+                <Col xs={12} sm={9} md={9}>
+                  <Fade
+                    show={true}
+                    key={String(response.data && response.data.id)}
+                  >
+                    <HighlightedSentence>
+                      {response.data && response.data.value}
+                    </HighlightedSentence>
+                  </Fade>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
                   <Button onClick={refetch} loading={response.isLoading}>
                     Gimme another fact!
                   </Button>
+                </Col>
+                <Col>
+                  <Link to={homeRoutePath}>
+                    <Button outline>Show all categories</Button>
+                  </Link>
                 </Col>
               </Row>
             </LoadingAndErrorContentPart>
