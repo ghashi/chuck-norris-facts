@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { RouteChildrenProps } from 'react-router';
+import { REACT_APP_SITE_URL } from '../..';
+import { SEO } from '../../atomic/obj.seo/seo.component';
 
 export const categoryDetailRoutePath = `/category/:id`;
 interface CategoryDetailLazyParams {
@@ -19,10 +21,22 @@ const CategoryDetailLazy: React.FunctionComponent<
   CategoryDetailLazyProps
 > = props => {
   const name = props.match ? props.match.params.id : '';
+  const currentUrl = `${REACT_APP_SITE_URL}${props.location.pathname}`;
   return (
-    <React.Suspense fallback={renderLoader()}>
-      <CategoryDetailPage name={name} />
-    </React.Suspense>
+    <>
+      <SEO
+        socialMedia={{
+          url: currentUrl,
+          title: `${name} Facts`,
+          image: 'https://assets.chucknorris.host/img/avatar/chuck-norris.png',
+          imageAlt: 'Chuck Norris avatar',
+          description: `Learn ${name} facts about Him!`
+        }}
+      />
+      <React.Suspense fallback={renderLoader()}>
+        <CategoryDetailPage name={name} />
+      </React.Suspense>
+    </>
   );
 };
 

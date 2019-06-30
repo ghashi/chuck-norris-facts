@@ -29,8 +29,8 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = props => {
   return (
     <CategoryListStyled>
       {categories.map((category, index) => (
-        <CategoryListItemStyled>
-          <Link to={category.to} key={index}>
+        <CategoryListItemStyled key={index}>
+          <Link to={category.to}>
             <CategoryListItemContentStyled>
               {category.name || <Skeleton width={90} />}
             </CategoryListItemContentStyled>

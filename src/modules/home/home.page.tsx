@@ -15,10 +15,13 @@ import {
 } from '../../data/http/dto/get-categories.request';
 import CategoryList from './component/category-list.component';
 import { mapToCategoryListItem } from './home.map';
+import { JsonLd } from '../../atomic/obj.seo/json-ld.component';
+import { getListJsonLd } from '../../atomic/obj.seo/list-json-ld';
+import { REACT_APP_SITE_URL } from '../..';
 
 interface HomePageProps {}
 
-const HomePage: React.FunctionComponent<HomePageProps> = _props => {
+const HomePage: React.FunctionComponent<HomePageProps> = props => {
   const [response, , refetch] = useDataApi<GetCategoriesResponse>(
     getCategoriesApiPath
   );
@@ -43,6 +46,16 @@ const HomePage: React.FunctionComponent<HomePageProps> = _props => {
             </LoadingAndErrorLoadingPart>
             <LoadingAndErrorContentPart>
               <CategoryList categories={categories} />
+
+              {categories && (
+                <JsonLd
+                  jsonld={getListJsonLd(
+                    categories.map(
+                      category => `${REACT_APP_SITE_URL}${category.to}`
+                    )
+                  )}
+                />
+              )}
             </LoadingAndErrorContentPart>
             <LoadingAndErrorErrorPart>
               <ErrorPlaceholder onClick={refetch} />
