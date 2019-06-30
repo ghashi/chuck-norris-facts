@@ -1,12 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { GlobalStyled } from './atomic/obj.globals';
-import logo from './logo.svg';
-
-function CategoryList() {
-  return <h2>Home</h2>;
-}
+import Layout from './atomic/org.layout/layout.component';
+import HomeLazy from './modules/home/home.lazy';
 
 function CotegoryDetail() {
   return <h2>About</h2>;
@@ -14,35 +10,15 @@ function CotegoryDetail() {
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <>
       <GlobalStyled />
-      <Router>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/category-detail/">About</Link>
-            </li>
-          </ul>
-        </header>
-        <Route path="/" exact component={CategoryList} />
-        <Route path="/category-detail/" component={CotegoryDetail} />
-      </Router>
-    </div>
+      <Layout>
+        <Router>
+          <Route path="/" exact component={HomeLazy} />
+          <Route path="/category-detail/" component={CotegoryDetail} />
+        </Router>
+      </Layout>
+    </>
   );
 };
 
