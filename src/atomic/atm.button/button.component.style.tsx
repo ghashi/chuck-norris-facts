@@ -63,6 +63,7 @@ export const ButtonContentStyled = styled.div`
   transition: all 0.2s ease-in-out;
   opacity: ${(props: { loading?: boolean }) => (props.loading ? 0 : 1)};
   font-stretch: 100%;
+  width: 100%;
 `;
 
 const loadingSize = 36;

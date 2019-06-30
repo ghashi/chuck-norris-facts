@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useState, useCallback } from 'react';
 import { REACT_APP_BASE_URL } from '../..';
 
 interface UseDataState<D> {
@@ -21,8 +21,12 @@ type UseDataReducer<D> = (
 export function useDataApi<D>(
   initialUrl: string,
   initialData?: D
-): [UseDataState<D>, React.Dispatch<React.SetStateAction<string>>] {
+): [UseDataState<D>, React.Dispatch<React.SetStateAction<string>>, () => void] {
   const [url, setUrl] = useState(initialUrl);
+  const [refetchTimestamp, setRefetchTimestamp] = useState(Date.now());
+  const refetch = useCallback(() => {
+    setRefetchTimestamp(Date.now());
+  }, []);
 
   const [state, dispatch] = useReducer<UseDataReducer<D>>(dataFetchReducer, {
     isLoading: false,
@@ -54,9 +58,9 @@ export function useDataApi<D>(
     return () => {
       didCancel = true;
     };
-  }, [url]);
+  }, [url, refetchTimestamp]);
 
-  return [state, setUrl];
+  return [state, setUrl, refetch];
 }
 
 function dataFetchReducer<D>(
