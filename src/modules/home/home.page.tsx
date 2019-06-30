@@ -10,17 +10,19 @@ import {
   LoadingAndErrorLoadingPart
 } from '../../atomic/obj.loading-and-error/loading-and-error.component';
 import {
-  getCategoriesPath,
+  getCategoriesApiPath,
   GetCategoriesResponse
 } from '../../data/http/dto/get-categories.request';
 import CategoryList from './component/category-list.component';
+import { mapToCategoryListItem } from './home.map';
 
 interface HomePageProps {}
 
 const HomePage: React.FunctionComponent<HomePageProps> = _props => {
   const [response, , refetch] = useDataApi<GetCategoriesResponse>(
-    getCategoriesPath
+    getCategoriesApiPath
   );
+  const categories = response.data && response.data.map(mapToCategoryListItem);
   return (
     <Grid>
       <Row>
@@ -40,7 +42,7 @@ const HomePage: React.FunctionComponent<HomePageProps> = _props => {
               <CategoryList isLoading />
             </LoadingAndErrorLoadingPart>
             <LoadingAndErrorContentPart>
-              <CategoryList categories={response.data} />
+              <CategoryList categories={categories} />
             </LoadingAndErrorContentPart>
             <LoadingAndErrorErrorPart>
               <ErrorPlaceholder onClick={refetch} />

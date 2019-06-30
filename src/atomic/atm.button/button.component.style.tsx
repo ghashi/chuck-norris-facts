@@ -33,8 +33,10 @@ export const ButtonStyled = styled.button`
 
   min-height: ${buttonHeight};
 
-  background-color: ${Color.Primary};
-  color: ${Color.White};
+  background-color: ${(props: ButtonProps) =>
+    props.outline ? Color.White : Color.Primary};
+  color: ${(props: ButtonProps) =>
+    props.outline ? Color.Primary : Color.White};
   border-color: ${Color.Primary};
   border-style: solid;
   border-radius: 4px;
@@ -43,11 +45,15 @@ export const ButtonStyled = styled.button`
     !props.disabled && !props.loading
       ? `
   &:hover {
-    background-color: ${BrandColor.ChineseRed};
+    background-color: ${
+      props.outline ? BrandColor.Snow : BrandColor.ChineseRed
+    };
   }
   &:active {
-    background-color: ${BrandColor.KenyanCopper};
-  }
+    background-color: ${
+      props.outline ? BrandColor.Snow : BrandColor.KenyanCopper
+    };
+    }
   `
       : ''}
 
@@ -61,14 +67,16 @@ export const ButtonStyled = styled.button`
 
 export const ButtonContentStyled = styled.div`
   transition: all 0.2s ease-in-out;
-  opacity: ${(props: { loading?: boolean }) => (props.loading ? 0 : 1)};
+  /* https://github.com/styled-components/styled-components/issues/1198#issuecomment-336621217 */
+  opacity: ${(props: { loading?: number }) => (props.loading ? 0 : 1)};
   font-stretch: 100%;
   width: 100%;
 `;
 
 const loadingSize = 36;
 export const ButtonSpinnerWrapperStyled = styled.span`
-  display: ${(props: { loading?: boolean }) =>
+  /* https://github.com/styled-components/styled-components/issues/1198#issuecomment-336621217 */
+  display: ${(props: { loading?: number }) =>
     props.loading ? 'inline-block' : 'none'};
   position: absolute;
   right: calc(50% - ${loadingSize / 2}px);

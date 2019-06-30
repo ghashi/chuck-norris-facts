@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react';
-import React from 'react';
+import * as React from 'react';
 import { Col, Grid, Row } from 'react-styled-flexboxgrid';
 import styled from 'styled-components';
 import { Color, FontFamily, FontSize, FontWeight, Spacing } from '.';

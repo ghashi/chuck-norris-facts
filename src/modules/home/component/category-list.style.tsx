@@ -14,17 +14,18 @@ export const CategoryListStyled = styled.ul`
   padding: 0;
 `;
 
-export const CategoryListItemContentStyled = styled(H3)``;
+export const CategoryListItemContentStyled = styled(H3)`
+  padding: ${Spacing.Medium};
+`;
 export const CategoryListItemStyled = styled.li`
   ${cardStyle}
-  padding: ${Spacing.Medium};
   text-align: center;
 
   transition: all ${animationTime};
 
   :hover {
     background: ${Color.Primary};
-    > ${CategoryListItemContentStyled} {
+    ${CategoryListItemContentStyled} {
       color: ${Color.White};
     }
   }

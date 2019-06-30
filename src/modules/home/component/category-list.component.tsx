@@ -5,14 +5,19 @@ import {
   CategoryListStyled
 } from './category-list.style';
 import Skeleton from 'react-loading-skeleton';
+import { Link } from 'react-router-dom';
 
-interface CategoryListProps {
-  categories?: string[];
+export interface CategoryListItem {
+  name: string;
+  to: string;
+}
+export interface CategoryListProps {
+  categories?: CategoryListItem[];
   isLoading?: boolean;
 }
 
 const CategoryList: React.FunctionComponent<CategoryListProps> = props => {
-  const loadingCategory = '';
+  const loadingCategory = { to: '', name: '' };
   const categories = props.isLoading
     ? Array(10).fill(loadingCategory)
     : props.categories;
@@ -24,10 +29,12 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = props => {
   return (
     <CategoryListStyled>
       {categories.map((category, index) => (
-        <CategoryListItemStyled key={index}>
-          <CategoryListItemContentStyled>
-            {category || <Skeleton width={90} />}
-          </CategoryListItemContentStyled>
+        <CategoryListItemStyled>
+          <Link to={category.to} key={index}>
+            <CategoryListItemContentStyled>
+              {category.name || <Skeleton width={90} />}
+            </CategoryListItemContentStyled>
+          </Link>
         </CategoryListItemStyled>
       ))}
     </CategoryListStyled>

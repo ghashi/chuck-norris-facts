@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { LoadingAndErroForegroundStyled } from './loading-and-error.style';
 
 interface LoadingPartProps {}
@@ -36,10 +36,10 @@ export const LoadingAndError: React.FunctionComponent<
   return (
     <>
       {props.loading && !props.isScreenPopulated && getLoading(props)}
+      {props.error ? getError(props) : getContent(props)}
       {props.loading && props.isScreenPopulated && (
         <LoadingAndErroForegroundStyled />
       )}
-      {props.error ? getError(props) : getContent(props)}
     </>
   );
 };
