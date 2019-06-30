@@ -36,8 +36,9 @@ export const ButtonStyled = styled.button`
   background-color: ${(props: ButtonProps) =>
     props.outline ? Color.White : Color.Primary};
   color: ${(props: ButtonProps) =>
-    props.outline ? Color.Primary : Color.White};
-  border-color: ${Color.Primary};
+    props.outline ? BrandColor.KenyanCopper : Color.White};
+  border-color: ${(props: ButtonProps) =>
+    props.outline ? BrandColor.KenyanCopper : Color.Primary};
   border-style: solid;
   border-radius: 4px;
 

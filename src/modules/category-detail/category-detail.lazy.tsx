@@ -27,7 +27,7 @@ const CategoryDetailLazy: React.FunctionComponent<
       <SEO
         socialMedia={{
           url: currentUrl,
-          title: `${name} Facts`,
+          title: `${name} facts`,
           image: 'https://assets.chucknorris.host/img/avatar/chuck-norris.png',
           imageAlt: 'Chuck Norris avatar',
           description: `Learn ${name} facts about Him!`
