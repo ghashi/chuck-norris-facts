@@ -17,7 +17,7 @@ export interface CategoryListProps {
 }
 
 const CategoryList: React.FunctionComponent<CategoryListProps> = props => {
-  const loadingCategory = '';
+  const loadingCategory = { to: '', name: '' };
   const categories = props.isLoading
     ? Array(10).fill(loadingCategory)
     : props.categories;
@@ -32,7 +32,7 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = props => {
         <Link to={category.to} key={index}>
           <CategoryListItemStyled>
             <CategoryListItemContentStyled>
-              {category ? category.name : <Skeleton width={90} />}
+              {category.name || <Skeleton width={90} />}
             </CategoryListItemContentStyled>
           </CategoryListItemStyled>
         </Link>

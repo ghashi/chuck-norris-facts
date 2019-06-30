@@ -2,6 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 import { FontFamily, FontSize } from '../obj.constants';
 
 export const GlobalStyled = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Muli');
+
   * {
     box-sizing: border-box;
   }
@@ -11,7 +13,6 @@ export const GlobalStyled = createGlobalStyle`
   }
 
   body {
-    @import url('https://fonts.googleapis.com/css?family=Muli');
     font-family: ${FontFamily.Primary};
 
     margin: 0;

@@ -67,14 +67,16 @@ export const ButtonStyled = styled.button`
 
 export const ButtonContentStyled = styled.div`
   transition: all 0.2s ease-in-out;
-  opacity: ${(props: { loading?: boolean }) => (props.loading ? 0 : 1)};
+  /* https://github.com/styled-components/styled-components/issues/1198#issuecomment-336621217 */
+  opacity: ${(props: { loading?: number }) => (props.loading ? 0 : 1)};
   font-stretch: 100%;
   width: 100%;
 `;
 
 const loadingSize = 36;
 export const ButtonSpinnerWrapperStyled = styled.span`
-  display: ${(props: { loading?: boolean }) =>
+  /* https://github.com/styled-components/styled-components/issues/1198#issuecomment-336621217 */
+  display: ${(props: { loading?: number }) =>
     props.loading ? 'inline-block' : 'none'};
   position: absolute;
   right: calc(50% - ${loadingSize / 2}px);

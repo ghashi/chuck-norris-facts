@@ -1,24 +1,21 @@
 import * as React from 'react';
+import Skeleton from 'react-loading-skeleton';
+import { Link } from 'react-router-dom';
 import { Col, Grid, Row } from 'react-styled-flexboxgrid';
 import Button from '../../atomic/atm.button/button.component';
 import HighlightedSentence from '../../atomic/atm.highlighted-sentence/highlighted-sentence.component';
 import { H1 } from '../../atomic/atm.typography';
+import { VSeparator } from '../../atomic/atm.utils/utils.style';
 import ErrorPlaceholder from '../../atomic/mol.error-placeholder/error-placeholder.component';
-import { useDataApi } from '../../atomic/obj.hooks/data-api.hooks';
+import { Fade } from '../../atomic/obj.animation/animation.component.style';
 import {
   LoadingAndError,
   LoadingAndErrorContentPart,
   LoadingAndErrorErrorPart,
   LoadingAndErrorLoadingPart
 } from '../../atomic/obj.loading-and-error/loading-and-error.component';
-import {
-  getCategoryDetailApiPath,
-  GetCategoryDetailResponse
-} from '../../data/http/dto/get-category-detail.request';
-import { Fade } from '../../atomic/obj.animation/animation.component.style';
-import Skeleton from 'react-loading-skeleton';
-import { Link } from 'react-router-dom';
 import { homeRoutePath } from '../home/home.lazy';
+import { useCategoryDetailAPI } from './category-detail.hook';
 
 interface CategoryDetailPageProps {
   name: string;
@@ -27,9 +24,7 @@ interface CategoryDetailPageProps {
 const CategoryDetailPage: React.FunctionComponent<
   CategoryDetailPageProps
 > = props => {
-  const [response, , refetch] = useDataApi<GetCategoryDetailResponse>(
-    getCategoryDetailApiPath(props.name)
-  );
+  const [response, handleReload] = useCategoryDetailAPI(props.name);
 
   return (
     <Grid>
@@ -57,10 +52,7 @@ const CategoryDetailPage: React.FunctionComponent<
             <LoadingAndErrorContentPart>
               <Row>
                 <Col xs={12} sm={9} md={9}>
-                  <Fade
-                    show={true}
-                    key={String(response.data && response.data.id)}
-                  >
+                  <Fade show={true} key={response.data && response.data.id}>
                     <HighlightedSentence>
                       {response.data && response.data.value}
                     </HighlightedSentence>
@@ -69,9 +61,10 @@ const CategoryDetailPage: React.FunctionComponent<
               </Row>
               <Row>
                 <Col>
-                  <Button onClick={refetch} loading={response.isLoading}>
+                  <Button onClick={handleReload} loading={response.isLoading}>
                     Gimme another fact!
                   </Button>
+                  <VSeparator />
                 </Col>
                 <Col>
                   <Link to={homeRoutePath}>
@@ -81,7 +74,7 @@ const CategoryDetailPage: React.FunctionComponent<
               </Row>
             </LoadingAndErrorContentPart>
             <LoadingAndErrorErrorPart>
-              <ErrorPlaceholder onClick={refetch} />
+              <ErrorPlaceholder onClick={handleReload} />
             </LoadingAndErrorErrorPart>
           </LoadingAndError>
         </Col>

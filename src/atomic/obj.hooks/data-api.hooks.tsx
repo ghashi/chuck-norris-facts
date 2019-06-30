@@ -2,14 +2,14 @@ import axios from 'axios';
 import { useEffect, useReducer, useState, useCallback } from 'react';
 import { REACT_APP_BASE_URL } from '../..';
 
-interface UseDataState<D> {
+export interface UseDataState<D> {
   isLoading: boolean;
   isError: boolean;
   data?: D;
 }
 
 interface UseDataActions<D> {
-  type: 'FETCH_INIT' | 'FETCH_SUCCESS' | 'FETCH_FAILURE';
+  type: 'FETCH_INIT' | 'FETCH_SUCCESS' | 'FETCH_FAILURE' | 'FETCH_REINIT';
   payload?: D;
 }
 
@@ -23,16 +23,18 @@ export function useDataApi<D>(
   initialData?: D
 ): [UseDataState<D>, React.Dispatch<React.SetStateAction<string>>, () => void] {
   const [url, setUrl] = useState(initialUrl);
-  const [refetchTimestamp, setRefetchTimestamp] = useState(Date.now());
-  const refetch = useCallback(() => {
-    setRefetchTimestamp(Date.now());
-  }, []);
 
   const [state, dispatch] = useReducer<UseDataReducer<D>>(dataFetchReducer, {
     isLoading: false,
     isError: false,
     data: initialData
   });
+
+  const [refetchTimestamp, setRefetchTimestamp] = useState(Date.now());
+  const refetch = useCallback(() => {
+    setRefetchTimestamp(Date.now());
+    dispatch({ type: 'FETCH_REINIT' });
+  }, []);
 
   useEffect(() => {
     let didCancel = false;
@@ -68,6 +70,7 @@ function dataFetchReducer<D>(
   action: UseDataActions<D>
 ): UseDataState<D> {
   switch (action.type) {
+    case 'FETCH_REINIT':
     case 'FETCH_INIT':
       return {
         ...state,

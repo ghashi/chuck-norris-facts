@@ -19,10 +19,10 @@ const Button: React.FunctionComponent<ButtonProps> = props => {
 
   return (
     <ButtonStyled outline={outline} disabled={loading || disabled} {...others}>
-      <ButtonContentStyled loading={loading}>
+      <ButtonContentStyled loading={loading ? 1 : 0}>
         {props.children}
       </ButtonContentStyled>
-      <ButtonSpinnerWrapperStyled loading={loading}>
+      <ButtonSpinnerWrapperStyled loading={loading ? 1 : 0}>
         <ButtonSpinnerStyled />
       </ButtonSpinnerWrapperStyled>
     </ButtonStyled>
