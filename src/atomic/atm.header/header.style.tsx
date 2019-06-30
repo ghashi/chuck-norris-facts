@@ -14,9 +14,10 @@ export const HeaderStyled = styled.header`
   padding: ${Spacing.Medium};
 `;
 
-export const HeaderTitleStyled = styled.a`
+export const HeaderTitleStyled = styled.span`
   font-size: ${FontSize.Medium};
   font-weight: ${FontWeight.Bold};
+  color: ${BrandColor.OrangeRed};
   text-transform: uppercase;
   letter-spacing: 2px;
 `;

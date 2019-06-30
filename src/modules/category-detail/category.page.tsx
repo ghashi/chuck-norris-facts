@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Col, Grid, Row } from 'react-styled-flexboxgrid';
-import { Body, H1 } from '../../atomic/atm.typography';
+import Button from '../../atomic/atm.button/button.component';
+import { H1 } from '../../atomic/atm.typography';
 import ErrorPlaceholder from '../../atomic/mol.error-placeholder/error-placeholder.component';
 import { useDataApi } from '../../atomic/obj.hooks/data-api.hooks';
 import {
@@ -10,25 +11,24 @@ import {
   LoadingAndErrorLoadingPart
 } from '../../atomic/obj.loading-and-error/loading-and-error.component';
 import {
-  getCategoriesApiPath,
-  GetCategoriesResponse
-} from '../../data/http/dto/get-categories.request';
-import CategoryList from './component/category-list.component';
-import { mapToCategoryListItem } from './home.map';
+  GetCategoriesResponse,
+  getCategoryDetailApiPath
+} from '../../data/http/dto/get-category-detail.request';
 
-interface HomePageProps {}
+interface CategoryPageProps {
+  name: string;
+}
 
-const HomePage: React.FunctionComponent<HomePageProps> = _props => {
+const CategoryPage: React.FunctionComponent<CategoryPageProps> = props => {
   const [response, , refetch] = useDataApi<GetCategoriesResponse>(
-    getCategoriesApiPath
+    getCategoryDetailApiPath(props.name)
   );
-  const categories = response.data && response.data.map(mapToCategoryListItem);
+
   return (
     <Grid>
       <Row>
         <Col xs={12}>
-          <H1>Learn something about Him!</H1>
-          <Body>Choose a category:</Body>
+          <H1>{props.name}</H1>
         </Col>
       </Row>
       <Row>
@@ -38,11 +38,12 @@ const HomePage: React.FunctionComponent<HomePageProps> = _props => {
             loading={response.isLoading}
             error={response.isError}
           >
-            <LoadingAndErrorLoadingPart>
-              <CategoryList isLoading />
-            </LoadingAndErrorLoadingPart>
+            <LoadingAndErrorLoadingPart>loading</LoadingAndErrorLoadingPart>
             <LoadingAndErrorContentPart>
-              <CategoryList categories={categories} />
+              <pre>{JSON.stringify(response, null, 2)}</pre>
+              <Col xs={12}>
+                <Button onClick={refetch}> Gimme another fact!</Button>
+              </Col>
             </LoadingAndErrorContentPart>
             <LoadingAndErrorErrorPart>
               <ErrorPlaceholder onClick={refetch} />
@@ -54,4 +55,4 @@ const HomePage: React.FunctionComponent<HomePageProps> = _props => {
   );
 };
 
-export default HomePage;
+export default CategoryPage;
