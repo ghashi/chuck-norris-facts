@@ -12,7 +12,8 @@ const App: React.FC = () => {
   return (
     <>
       <GlobalStyled />
-      <Router>
+      {/* https://github.com/facebook/create-react-app/issues/1765#issuecomment-327615099 */}
+      <Router basename={process.env.PUBLIC_URL}>
         <Layout>
           <Switch>
             <Route path={homeRoutePath} exact component={HomeLazy} />

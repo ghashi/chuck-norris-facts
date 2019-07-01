@@ -15,11 +15,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Project folder organization
 
+```
 ├── `src`
-│   ├── `atomic` => it has the project components. [Read this for more info](src/atomic/README.md)
+│   ├── `atomic` => it has the project components. Check the readme inside `src/atomic/README.md`
 │   ├── `data` => it should have all datasources (http, database, session storage, local storage)
 │   │   └── `http` => it should have http related code: data transfer objects (DTO), request objects, response objects, urls, interceptors
 │   └── `modules` => project modules/pages (ex: home, category-detail) and their specific dependencies/components
+```
 
 ## Available Scripts
 
