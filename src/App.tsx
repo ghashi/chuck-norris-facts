@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { GlobalStyled } from './atomic/obj.globals';
+import Layout from './atomic/org.layout/layout.component';
+import Page404Page from './modules/404/404.page';
+import CategoryLazy, {
+  categoryDetailRoutePath
+} from './modules/category-detail/category-detail.lazy';
+import HomeLazy, { homeRoutePath } from './modules/home/home.lazy';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyled />
+      {/* https://github.com/facebook/create-react-app/issues/1765#issuecomment-327615099 */}
+      <Router basename={process.env.PUBLIC_URL}>
+        <Layout>
+          <Switch>
+            <Route path={homeRoutePath} exact component={HomeLazy} />
+            <Route path={categoryDetailRoutePath} component={CategoryLazy} />
+            <Route component={Page404Page} />
+          </Switch>
+        </Layout>
+      </Router>
+    </>
   );
-}
+};
 
 export default App;

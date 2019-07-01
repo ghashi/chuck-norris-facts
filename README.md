@@ -1,8 +1,35 @@
+# Chuck Norris facts
+
+This projects consumes the [ChuckNorris.io](https://api.chucknorris.io/) API. You can:
+
+- see all fact categories
+- see a fact for a given category
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+<a href="https://www.styled-components.com/"><img src="https://img.shields.io/badge/built%20with-styled%20components-db7093.svg" alt="Built with Styled Components" /></a>
+
+<img src="https://img.shields.io/badge/powered%20by-typescript-blue.svg" alt="Powered by TypeScript" />
+
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
+## Project folder organization
+
+```
+├── `src`
+│   ├── `atomic` => it has the project components. Check the readme inside `src/atomic/README.md`
+│   ├── `data` => it should have all datasources (http, database, session storage, local storage)
+│   │   └── `http` => it should have http related code: data transfer objects (DTO), request objects, response objects, urls, interceptors
+│   └── `modules` => project modules/pages (ex: home, category-detail) and their specific dependencies/components
+```
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm run storybook`
+
+Runs the storybook which lists the project components.<br>
 
 ### `npm start`
 
@@ -26,6 +53,10 @@ The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run deploy`
+
+Deploy it to GH Pages
 
 ### `npm run eject`
 
