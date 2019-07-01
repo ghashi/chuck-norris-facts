@@ -70,6 +70,7 @@ const CategoryDetailPage: React.FunctionComponent<
                   <Link to={homeRoutePath}>
                     <Button outline>Show all categories</Button>
                   </Link>
+                  <VSeparator />
                 </Col>
               </Row>
             </LoadingAndErrorContentPart>
