@@ -1,6 +1,6 @@
 {
   "name": "chuck-norris-facts",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "homepage": "https://ghashi.github.io/chuck-norris-facts",
   "dependencies": {
     "@types/jest": "24.0.15",
